@@ -1,0 +1,128 @@
+plugins {
+	id "me.tatarka.retrolambda" version "3.5.0"
+}
+
+apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+apply plugin: 'realm-android'
+
+android {
+	compileSdkVersion globalCompileSdkVersion
+	buildToolsVersion globalBuildToolsVersion
+
+	defaultConfig {
+		applicationId "com.esorokin.boilerplate"
+		minSdkVersion globalMinSdkVersion
+		targetSdkVersion globalTargetVersion
+		versionName '0.1.0' // Major, Minor, Bugfix
+		versionCode 1
+
+		buildConfigField "boolean", "IS_TURN_LOGS", System.getenv("Logs") ?: "true"
+		manifestPlaceholders = [applicationLabel: "Custom app name"] //TODO replace with your app name
+	}
+
+	signingConfigs {
+		// You must set up an environment var before release signing
+		// Run: export APP_KEY={password}
+		// TODO Add your release keystore in /keystore folder
+		release {
+			storeFile file('../keystore/release.keystore')
+			keyAlias 'alias'
+			storePassword "$System.env.APP_KEY"
+			keyPassword "$System.env.APP_KEY"
+		}
+
+		debug {
+			storeFile file('../keystore/debug.keystore')
+			keyAlias 'androiddebugkey'
+			storePassword 'android'
+			keyPassword 'android'
+		}
+	}
+
+	productFlavors {
+		prod {
+			manifestPlaceholders = [applicationLabelSuffix: ""]
+		}
+
+		dev {
+			manifestPlaceholders = [applicationLabelSuffix: " Dev"]
+			applicationIdSuffix "dev"
+		}
+	}
+
+	buildTypes {
+		release {
+			signingConfig signingConfigs.release
+			minifyEnabled true
+			debuggable false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+
+		debug {
+			signingConfig signingConfigs.debug
+			minifyEnabled false
+			debuggable true
+			versionNameSuffix " Debug"
+		}
+	}
+
+	variantFilter {
+		variant ->
+			def names = variant.flavors*.name
+			if (names.contains("dev") && names.contains("release")) {
+				setIgnore(true)
+			}
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	dataBinding {
+		enabled = true
+	}
+}
+
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+
+	//support libraries
+	compile "com.android.support:appcompat-v7:${support}"
+	compile "com.android.support:design:${support}"
+	compile "com.android.support:cardview-v7:${support}"
+	compile "com.android.support:recyclerview-v7:${support}"
+
+	//gps
+	compile "com.google.android.gms:play-services-gcm:${playServices}"
+
+	//network
+	compile "com.squareup.retrofit2:retrofit:${retrofit}"
+	compile "com.squareup.retrofit2:converter-gson:${retrofit}"
+	compile "com.squareup.okhttp3:logging-interceptor:${okhttp}"
+
+	//rx
+	compile "io.reactivex.rxjava2:rxjava:${rxjava}"
+	compile "io.reactivex.rxjava2:rxandroid:${rxjava}"
+
+	//di
+	annotationProcessor "com.google.dagger:dagger-compiler:${dagger2}"
+	compile "com.google.dagger:dagger:${dagger2}"
+	provided 'javax.annotation:jsr250-api:1.0'
+
+	//mvp
+	compile "com.arello-mobile:moxy:${moxy}"
+	compile "com.arello-mobile:moxy-app-compat:${moxy}"
+	annotationProcessor "com.arello-mobile:moxy-compiler:${moxy}"
+
+	//utils
+	compile "com.scottyab:secure-preferences-lib:${securePrefs}"
+	compile "com.jakewharton.timber:timber:${timber}"
+	provided "org.projectlombok:lombok:${lombok}"
+
+	compile "com.jakewharton:butterknife:${butterknife}"
+	annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife}"
+
+	compile "com.hannesdorfmann:adapterdelegates3:${adapterDelegates}"
+}

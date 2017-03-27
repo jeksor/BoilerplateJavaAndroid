@@ -1,0 +1,12 @@
+<resources>
+	<!-- error -->
+	<string name="error_internet_connection">The internet connection appears to be offline</string>
+	<string name="error_unknown_title">Oops</string>
+	<string name="error_timeout">Request timeout.\nTry again later</string>
+	<string name="error_unknown_message">Unknown error.\nPlease, restart app and try again</string>
+	
+	<!-- other -->
+	<string name="sorry">Sorry</string>
+	<string name="ok">OK</string>
+	<string name="loading">Loading</string>
+</resources>

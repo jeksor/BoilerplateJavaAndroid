@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="base_api_url">https://nl-slim.dev.arello-mobile.com</string>
+</resources>
