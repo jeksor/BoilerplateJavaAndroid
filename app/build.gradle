@@ -118,6 +118,9 @@ dependencies {
 	compile "com.arello-mobile:moxy-app-compat:${moxy}"
 	annotationProcessor "com.arello-mobile:moxy-compiler:${moxy}"
 
+	//navigation
+	compile "com.github.aartikov:Alligator:${alligator}"
+
 	//utils
 	compile "com.scottyab:secure-preferences-lib:${securePrefs}"
 	compile "com.jakewharton.timber:timber:${timber}"

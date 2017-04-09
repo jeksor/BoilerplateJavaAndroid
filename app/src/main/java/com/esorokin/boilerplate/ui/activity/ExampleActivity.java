@@ -2,6 +2,8 @@ package com.esorokin.boilerplate.ui.activity;
 
 import java.util.Locale;
 
+import android.os.Bundle;
+
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.esorokin.boilerplate.R;
 import com.esorokin.boilerplate.databinding.ActivityExampleBinding;
@@ -12,6 +14,7 @@ import com.esorokin.boilerplate.presentation.view.example.ExampleView;
 import com.esorokin.boilerplate.ui.plugins.BindingPlugin;
 import com.esorokin.boilerplate.ui.plugins.DialogErrorPlugin;
 import com.esorokin.boilerplate.ui.plugins.ErrorPlugin;
+import com.esorokin.boilerplate.ui.plugins.NavigationPlugin;
 import com.esorokin.boilerplate.ui.plugins.ProgressPlugin;
 
 public class ExampleActivity extends BaseActivity implements ExampleView {
@@ -25,9 +28,19 @@ public class ExampleActivity extends BaseActivity implements ExampleView {
 	@Override
 	protected void initPlugins() {
 		super.initPlugins();
+		compositionPlugin().attach(new NavigationPlugin(this));
 		compositionPlugin().attach(bindingPlugin = new BindingPlugin<>(this, R.layout.activity_example));
 		compositionPlugin().attach(errorPlugin = new DialogErrorPlugin(() -> this));
 		compositionPlugin().attach(progressPlugin = new ProgressPlugin(() -> this));
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		//extract all parameters for screen. If you launch it from Navigator.
+		//AppScreen.Example screen = ScreenUtils.getScreen(this, AppScreen.Example.class);
+		//screen.getExampleParameter();
 	}
 
 	@Override
