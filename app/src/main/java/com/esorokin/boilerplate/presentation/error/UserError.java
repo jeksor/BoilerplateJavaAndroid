@@ -1,4 +1,4 @@
-package com.esorokin.boilerplate.presentation.errors;
+package com.esorokin.boilerplate.presentation.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

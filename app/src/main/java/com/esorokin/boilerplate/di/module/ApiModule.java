@@ -2,7 +2,7 @@ package com.esorokin.boilerplate.di.module;
 
 import com.esorokin.boilerplate.R;
 import com.esorokin.boilerplate.app.StringProvider;
-import com.esorokin.boilerplate.model.network.api.SomethingApi;
+import com.esorokin.boilerplate.model.network.api.ExampleApi;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -36,7 +36,7 @@ public class ApiModule {
 
 	@Provides
 	@Singleton
-	SomethingApi provideSomethingApi(@Named(BASE_API_QUALIFIER) Retrofit retrofit) {
-		return retrofit.create(SomethingApi.class);
+	ExampleApi provideSomethingApi(@Named(BASE_API_QUALIFIER) Retrofit retrofit) {
+		return retrofit.create(ExampleApi.class);
 	}
 }

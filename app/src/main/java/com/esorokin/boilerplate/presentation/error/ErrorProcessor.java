@@ -1,4 +1,4 @@
-package com.esorokin.boilerplate.presentation.errors;
+package com.esorokin.boilerplate.presentation.error;
 
 /**
  * Using by presenters for localize domain exceptions into user friendly messages.

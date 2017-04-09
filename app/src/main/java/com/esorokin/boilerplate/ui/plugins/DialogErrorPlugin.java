@@ -1,13 +1,12 @@
 package com.esorokin.boilerplate.ui.plugins;
 
-import android.app.Dialog;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 
 import com.esorokin.boilerplate.R;
-import com.esorokin.boilerplate.presentation.errors.UserError;
+import com.esorokin.boilerplate.presentation.error.UserError;
 
-public class DialogErrorPlugin extends ErrorPlugin<ContextProvider> {
+public class DialogErrorPlugin extends ErrorPlugin {
 	private AlertDialog dialog;
 
 	public DialogErrorPlugin(ContextProvider delegate) {
@@ -20,15 +19,15 @@ public class DialogErrorPlugin extends ErrorPlugin<ContextProvider> {
 	}
 
 	@Override
-	public void showUiError(UserError userError, @Nullable Dialog.OnClickListener hideErrorListener) {
+	public void showUiError(UserError userError, @Nullable ErrorHideListener errorHideListener) {
 		hideUiError();
 		dialog = new AlertDialog.Builder(getDependency().getContext())
 				.setTitle(userError.getTitle())
 				.setMessage(userError.getMessage())
 				.setCancelable(true)
 				.setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-					if (hideErrorListener != null) {
-						hideErrorListener.onClick(dialogInterface, i);
+					if (errorHideListener != null) {
+						errorHideListener.hideError();
 					}
 				})
 				.show();

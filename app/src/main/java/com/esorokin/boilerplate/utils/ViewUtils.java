@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.view.inputmethod.InputMethodManager;
 
-public final class ViewUtil {
+public final class ViewUtils {
 	private static final float DENSITY_FACTOR = 160f;
 
 	public static float pxToDp(float px) {

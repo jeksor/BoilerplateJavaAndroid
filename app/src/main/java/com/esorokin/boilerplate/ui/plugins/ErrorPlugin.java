@@ -1,19 +1,22 @@
 package com.esorokin.boilerplate.ui.plugins;
 
-import android.app.Dialog;
 import android.support.annotation.Nullable;
 
-import com.esorokin.boilerplate.presentation.errors.UserError;
+import com.esorokin.boilerplate.presentation.error.UserError;
 import com.esorokin.boilerplate.ui.plugins.base.BaseDependencyPlugin;
 
-public abstract class ErrorPlugin<T extends ContextProvider> extends BaseDependencyPlugin<T> {
-	public ErrorPlugin(T contextProvider) {
-		super(contextProvider);
+public abstract class ErrorPlugin extends BaseDependencyPlugin<ContextProvider> {
+	public ErrorPlugin(ContextProvider dependency) {
+		super(dependency);
 	}
 
 	public abstract void showUiError(UserError userError);
 
-	public abstract void showUiError(UserError userError, @Nullable Dialog.OnClickListener hideErrorListener);
+	public abstract void showUiError(UserError userError, @Nullable ErrorHideListener errorHideListener);
 
 	public abstract void hideUiError();
+
+	public interface ErrorHideListener {
+		void hideError();
+	}
 }

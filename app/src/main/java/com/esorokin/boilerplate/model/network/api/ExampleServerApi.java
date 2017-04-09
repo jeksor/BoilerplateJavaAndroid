@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.esorokin.boilerplate.model.network.data.ApiErrorCode;
 import com.esorokin.boilerplate.model.network.data.ErrorResponse;
+import com.esorokin.boilerplate.model.network.data.example.ExampleDto;
 import com.esorokin.boilerplate.model.network.exception.UnhandledApiException;
 import com.google.gson.Gson;
 
@@ -15,15 +16,19 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 @Singleton
-public class SomethingServerApi extends ServerApi {
+public class ExampleServerApi extends ServerApi {
 	@Inject
 	Gson gson;
 
 	@Inject
-	SomethingApi somethingApi;
+	ExampleApi exampleApi;
 
 	@Inject
-	public SomethingServerApi() {/**/}
+	public ExampleServerApi() {/**/}
+
+	public Single<ExampleDto> getExample() {
+		return handleHttpErrorCall(exampleApi.getExample());
+	}
 
 	@Override
 	protected <R> Single<R> handleHttpResponse(Response<R> response) {
