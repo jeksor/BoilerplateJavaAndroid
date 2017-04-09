@@ -1,6 +1,6 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
-# in C:\Android\sdk/tools/proguard/proguard-android.txt
+# in <android-sdk>/tools/proguard/proguard-android.txt
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
 #
@@ -16,10 +16,13 @@
 #   public *;
 #}
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Produces useful obfuscated stack traces
+# http://proguard.sourceforge.net/manual/examples.html#stacktrace
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Shut up
+# http://proguard.sourceforge.net/manual/troubleshooting.html#duplicateclass
+-dontnote android.net.http.*
+-dontnote org.apache.http.**
+-dontnote sun.misc.Unsafe.*

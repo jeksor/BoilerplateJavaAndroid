@@ -1,10 +1,13 @@
+import com.android.builder.core.BuilderConstants
+
 plugins {
 	id "me.tatarka.retrolambda" version "3.5.0"
 }
 
 apply plugin: 'com.android.application'
-apply from: '../config/quality/quality.gradle'
+apply plugin: 'com.getkeepsafe.dexcount'
 apply plugin: 'realm-android'
+apply from: '../config/quality/quality.gradle'
 
 android {
 	compileSdkVersion globalCompileSdkVersion
@@ -17,14 +20,14 @@ android {
 		versionName '0.1.0' // Major, Minor, Bugfix
 		versionCode 1
 
-		buildConfigField "boolean", "IS_TURN_LOGS", System.getenv("Logs") ?: "true"
+		buildConfigField "boolean", "IS_TURN_LOGS", buildServerEnable.toBoolean() ? buildServerLogs.toBoolean() : "true"
 		manifestPlaceholders = [applicationLabel: "Custom app name"] //TODO replace with your app name
 	}
 
 	signingConfigs {
-		// You must set up an environment var before release signing
-		// Run: export APP_KEY={password}
-		// TODO Add your release keystore in /keystore folder
+		// you must set up an environment var before release signing
+		// run: export APP_KEY={password}
+		// TODO add your release keystore in /keystore folder
 		release {
 			storeFile file('../keystore/release.keystore')
 			keyAlias 'alias'
@@ -40,39 +43,36 @@ android {
 		}
 	}
 
-	productFlavors {
+	buildTypes {
 		prod {
+			signingConfig signingConfigs.release
+			minifyEnabled buildServerEnable.toBoolean()
+			debuggable !buildServerEnable.toBoolean()
+			proguardFile getDefaultProguardFile('proguard-android.txt')
+			proguardFiles file('../config/proguard').listFiles()
+
 			manifestPlaceholders = [applicationLabelSuffix: ""]
 		}
 
 		dev {
-			manifestPlaceholders = [applicationLabelSuffix: " Dev"]
-			applicationIdSuffix "dev"
-		}
-	}
-
-	buildTypes {
-		release {
-			signingConfig signingConfigs.release
-			minifyEnabled true
-			debuggable false
-			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-		}
-
-		debug {
 			signingConfig signingConfigs.debug
 			minifyEnabled false
 			debuggable true
-			versionNameSuffix " Debug"
+			proguardFile getDefaultProguardFile('proguard-android.txt')
+			proguardFiles file('../config/proguard').listFiles()
+
+			manifestPlaceholders = [applicationLabelSuffix: " dev"]
+			applicationIdSuffix ".dev"
+			versionNameSuffix " Dev"
 		}
 	}
 
-	variantFilter {
-		variant ->
-			def names = variant.flavors*.name
-			if (names.contains("dev") && names.contains("release")) {
-				setIgnore(true)
-			}
+	//allow to use custom build type like {dev, stage, live}
+	android.variantFilter { variant ->
+		def build = variant.buildType.name
+		if (build == BuilderConstants.DEBUG || build == BuilderConstants.RELEASE) {
+			variant.setIgnore(true);
+		}
 	}
 
 	compileOptions {
@@ -80,6 +80,7 @@ android {
 		targetCompatibility JavaVersion.VERSION_1_8
 	}
 
+	//using only for inflate views
 	dataBinding {
 		enabled = true
 	}
@@ -105,6 +106,7 @@ dependencies {
 	//rx
 	compile "io.reactivex.rxjava2:rxjava:${rxjava}"
 	compile "io.reactivex.rxjava2:rxandroid:${rxjava}"
+	compile "com.jakewharton.rxbinding2:rxbinding:${rxbinding}"
 
 	//di
 	annotationProcessor "com.google.dagger:dagger-compiler:${dagger2}"
@@ -120,9 +122,5 @@ dependencies {
 	compile "com.scottyab:secure-preferences-lib:${securePrefs}"
 	compile "com.jakewharton.timber:timber:${timber}"
 	provided "org.projectlombok:lombok:${lombok}"
-
-	compile "com.jakewharton:butterknife:${butterknife}"
-	annotationProcessor "com.jakewharton:butterknife-compiler:${butterknife}"
-
 	compile "com.hannesdorfmann:adapterdelegates3:${adapterDelegates}"
 }
