@@ -11,35 +11,48 @@ public class BaseDependencyPlugin<T> extends DependencyPlugin<T> {
 	}
 
 	@Override
-	public void onCreate() {}
+	public void onCreate() {
+		//stub
+	}
 
 	@Override
-	public void onViewCreated(final View view) {}
+	public void onViewCreated(final View view) {
+		//stub
+	}
 
 	@Override
-	public void onStart() {}
+	public void onStart() {
+	}
 
 	@Override
-	public void onResume() {}
+	public void onResume() {
+	}
 
 	@Override
-	public void onPause() {}
+	public void onPause() {
+	}
 
 	@Override
-	public void onStop() {}
+	public void onStop() {
+	}
 
 	@Override
-	public void onDestroy() {}
+	public void onDestroy() {
+	}
 
 	@Override
-	public void onOptionsItemSelected(MenuItem item) {}
+	public void onOptionsItemSelected(MenuItem item) {
+	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {}
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	}
 
 	@Override
-	public void onBackPressed() {}
+	public void onBackPressed() {
+	}
 }

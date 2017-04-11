@@ -11,7 +11,7 @@ import dagger.Provides;
 
 @Module
 public class AndroidApplicationModule {
-	private Context context;
+	private final Context context;
 
 	public AndroidApplicationModule(Context context) {
 		this.context = context;

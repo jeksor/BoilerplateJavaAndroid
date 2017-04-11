@@ -10,7 +10,11 @@ import com.esorokin.boilerplate.R;
 
 public final class DefaultAnimationProvider implements TransitionAnimationProvider {
 	@Override
-	public TransitionAnimation getAnimation(TransitionType transitionType, Class<? extends Screen> screenClassFrom, Class<? extends Screen> screenClassTo, boolean isActivity, AnimationData animationData) {
+	public TransitionAnimation getAnimation(TransitionType transitionType,
+	                                        Class<? extends Screen> screenClassFrom,
+	                                        Class<? extends Screen> screenClassTo,
+	                                        boolean isActivity,
+	                                        AnimationData animationData) {
 		if (isActivity) {
 			return TransitionAnimation.DEFAULT;
 		} else {

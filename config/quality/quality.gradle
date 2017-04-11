@@ -15,7 +15,7 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 dependencies {
-    checkstyle 'com.puppycrawl.tools:checkstyle:6.11.1'
+    checkstyle 'com.puppycrawl.tools:checkstyle:7.6.1'
 }
 
 def qualityConfigDir = "$project.rootDir/config/quality";
@@ -79,7 +79,7 @@ task pmd(type: Pmd, group: 'Verification', description: 'Inspect sourcecode for 
 
 android {
     lintOptions {
-        lintConfig file("$project.rootDir/config/lint/rules-lint.xml")
+        lintConfig file("$qualityConfigDir/lint/rules-lint.xml")
         htmlOutput file("$reportsDir/lint/lint.html")
         warningsAsErrors true
         xmlReport false

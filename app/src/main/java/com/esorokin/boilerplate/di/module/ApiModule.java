@@ -28,7 +28,7 @@ public class ApiModule {
 	@Provides
 	@Named(BASE_API_QUALIFIER)
 	@Singleton
-	Retrofit provideBaseRetrofit(Retrofit.Builder retrofitBuilder) {
+	public Retrofit provideBaseRetrofit(Retrofit.Builder retrofitBuilder) {
 		return retrofitBuilder
 				.baseUrl(baseApiUrl)
 				.build();
@@ -36,7 +36,7 @@ public class ApiModule {
 
 	@Provides
 	@Singleton
-	ExampleApi provideSomethingApi(@Named(BASE_API_QUALIFIER) Retrofit retrofit) {
+	public ExampleApi provideSomethingApi(@Named(BASE_API_QUALIFIER) Retrofit retrofit) {
 		return retrofit.create(ExampleApi.class);
 	}
 }

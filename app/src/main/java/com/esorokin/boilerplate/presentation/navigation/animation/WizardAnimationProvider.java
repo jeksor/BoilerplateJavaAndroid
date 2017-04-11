@@ -10,7 +10,8 @@ import com.esorokin.boilerplate.R;
 
 public final class WizardAnimationProvider implements TransitionAnimationProvider {
 	@Override
-	public TransitionAnimation getAnimation(TransitionType transitionType, Class<? extends Screen> screenClassFrom, Class<? extends Screen> screenClassTo, boolean isActivity, AnimationData animationData) {
+	public TransitionAnimation getAnimation(TransitionType transitionType, Class<? extends Screen> screenClassFrom, Class<? extends Screen> screenClassTo,
+	                                        boolean isActivity, AnimationData animationData) {
 		switch (transitionType) {
 			case FORWARD:
 			case REPLACE:
