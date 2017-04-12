@@ -3,8 +3,8 @@ package com.esorokin.boilerplate.model.service.example;
 import com.esorokin.boilerplate.model.ModelWrapper;
 import com.esorokin.boilerplate.model.data.ExampleItem;
 import com.esorokin.boilerplate.model.mapper.Mapper;
-import com.esorokin.boilerplate.model.network.api.ExampleServerApi;
-import com.esorokin.boilerplate.model.network.data.example.ExampleDto;
+import com.esorokin.boilerplate.model.network.api.ExampleApi;
+import com.esorokin.boilerplate.model.network.data.example.ExampleDtoResponse;
 import com.esorokin.boilerplate.model.service.ServiceUtils;
 
 import javax.inject.Inject;
@@ -23,10 +23,10 @@ import lombok.Getter;
 @Singleton
 public class ExampleService {
 	@Inject
-	ExampleServerApi exampleServerApi;
+	ExampleApi exampleApi;
 
 	@Inject
-	Mapper<ExampleDto, ExampleItem> exampleItemMapper;
+	Mapper<ExampleDtoResponse, ExampleItem> exampleItemMapper;
 
 	@Getter
 	private final Subject<ModelWrapper<ExampleItem>> userNameUpdateEmitter = PublishSubject.create();
@@ -41,7 +41,7 @@ public class ExampleService {
 	}
 
 	public Single<ExampleItem> userName() {
-		return exampleServerApi.getExample()
+		return exampleApi.getExample()
 				.subscribeOn(Schedulers.io())
 				.map(exampleItemMapper::convert)
 				.compose(ServiceUtils.transitEventsToEmitter(userNameUpdateEmitter));

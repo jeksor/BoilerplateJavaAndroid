@@ -2,7 +2,7 @@ package com.esorokin.boilerplate.di.module;
 
 import com.esorokin.boilerplate.model.data.ExampleItem;
 import com.esorokin.boilerplate.model.mapper.Mapper;
-import com.esorokin.boilerplate.model.network.data.example.ExampleDto;
+import com.esorokin.boilerplate.model.network.data.example.ExampleDtoResponse;
 
 import javax.inject.Singleton;
 
@@ -13,7 +13,7 @@ import dagger.Provides;
 public class MapperModule {
 	@Singleton
 	@Provides
-	Mapper<ExampleDto, ExampleItem> provideExampleMapper() {
+	Mapper<ExampleDtoResponse, ExampleItem> provideExampleMapper() {
 		return exampleDto -> new ExampleItem(exampleDto.getExampleStringField(), Integer.valueOf(exampleDto.getExampleIntField()));
 	}
 }
