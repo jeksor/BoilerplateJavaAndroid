@@ -14,7 +14,9 @@ public class ExampleInteractor extends BaseInteractor {
 	ExampleService exampleService;
 
 	@Inject
-	public ExampleInteractor() {/**/}
+	public ExampleInteractor() {
+		super();
+	}
 
 	public Observable<ModelWrapper<ExampleItem>> getExampleUseCaseDataEmitter() {
 		return exampleService.getUserNameUpdateEmitter();

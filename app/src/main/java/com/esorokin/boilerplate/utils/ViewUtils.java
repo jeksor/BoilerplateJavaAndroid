@@ -8,6 +8,10 @@ import android.view.inputmethod.InputMethodManager;
 public final class ViewUtils {
 	private static final float DENSITY_FACTOR = 160f;
 
+	private ViewUtils() {
+		//utils
+	}
+
 	public static float pxToDp(float px) {
 		float densityDpi = Resources.getSystem().getDisplayMetrics().densityDpi;
 		return px / (densityDpi / DENSITY_FACTOR);

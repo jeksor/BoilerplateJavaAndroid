@@ -9,7 +9,7 @@ import com.esorokin.boilerplate.di.module.NetworkModule;
 
 public final class DependencyManager {
 	//region Singleton
-	private static DependencyManager instance;
+	private static volatile DependencyManager instance;
 
 	private static DependencyManager get() {
 		if (instance == null) {

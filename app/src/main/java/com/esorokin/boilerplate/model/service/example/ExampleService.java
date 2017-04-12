@@ -29,10 +29,12 @@ public class ExampleService {
 	Mapper<ExampleDto, ExampleItem> exampleItemMapper;
 
 	@Getter
-	private Subject<ModelWrapper<ExampleItem>> userNameUpdateEmitter = PublishSubject.create();
+	private final Subject<ModelWrapper<ExampleItem>> userNameUpdateEmitter = PublishSubject.create();
 
 	@Inject
-	public ExampleService() {/**/}
+	public ExampleService() {
+		super();
+	}
 
 	public void requestUserName() {
 		ServiceUtils.subscribeIgnoreResult(userName());

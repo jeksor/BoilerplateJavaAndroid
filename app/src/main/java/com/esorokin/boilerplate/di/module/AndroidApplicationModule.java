@@ -19,13 +19,13 @@ public class AndroidApplicationModule {
 
 	@Provides
 	@Singleton
-	public Context provideContext() {
+	Context provideContext() {
 		return context;
 	}
 
 	@Provides
 	@Singleton
-	public StringProvider provideStringProvider() {
+	StringProvider provideStringProvider() {
 		return context::getString;
 	}
 }

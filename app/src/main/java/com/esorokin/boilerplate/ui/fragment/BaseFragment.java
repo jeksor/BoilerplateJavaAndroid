@@ -9,13 +9,15 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.esorokin.boilerplate.ui.plugins.base.CompositionPlugin;
 import com.esorokin.boilerplate.ui.plugins.base.CompositionPluginDelegate;
 
-public abstract class BaseFragment extends MvpAppCompatFragment {
+public class BaseFragment extends MvpAppCompatFragment {
 	private final CompositionPlugin compositionPlugin = new CompositionPluginDelegate();
 
 	/**
 	 * Attach your plugins here.
 	 */
-	protected void initPlugins() {}
+	protected void initPlugins() {
+		//override
+	}
 
 	protected CompositionPlugin compositionPlugin() {
 		return compositionPlugin;

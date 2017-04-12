@@ -27,6 +27,14 @@
 	
 	<rule ref="rulesets/java/comments.xml">
 		<exclude name="CommentRequired" />
+		<exclude name="CommentDefaultAccessModifier" />
+	</rule>
+	
+	<rule ref="rulesets/java/comments.xml/CommentSize">
+		<properties>
+			<property name="maxLines" value="15" />
+			<property name="maxLineLength" value="180" />
+		</properties>
 	</rule>
 	
 	<rule ref="rulesets/java/controversial.xml">
@@ -38,6 +46,11 @@
 		<exclude name="DataflowAnomalyAnalysis" />
 		<exclude name="NullAssignment" />
 		<exclude name="OnlyOneReturn" />
+		<exclude name="AvoidUsingVolatile" />
+		<exclude name="DefaultPackage" />
+		
+		<!-- dagger2 cause -->
+		<exclude name="UnnecessaryConstructor" />
 	</rule>
 	
 	<rule ref="rulesets/java/coupling.xml">
@@ -56,6 +69,7 @@
 		<!-- because PMD can't handle double-check singleton-->
 		<exclude name="NonThreadSafeSingleton" />
 		<exclude name="FieldDeclarationsShouldBeAtStartOfClass" />
+		<exclude name="UseVarargs" />
 	</rule>
 	
 	<rule ref="rulesets/java/empty.xml" />

@@ -7,8 +7,8 @@ import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
-abstract class Prefs {
-	private String sharedPrefsName;
+class Prefs {
+	private final String sharedPrefsName;
 	private SharedPreferences sharedPrefs;
 
 	@Inject

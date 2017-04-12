@@ -1,4 +1,7 @@
 package com.esorokin.boilerplate.model.network.data;
 
-public abstract class BaseRequest {
+public class BaseRequest {
+	protected BaseRequest() {
+		//not available for directly create
+	}
 }

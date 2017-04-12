@@ -9,7 +9,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.esorokin.boilerplate.ui.plugins.base.CompositionPlugin;
 import com.esorokin.boilerplate.ui.plugins.base.CompositionPluginDelegate;
 
-public abstract class BaseActivity extends MvpAppCompatActivity {
+public class BaseActivity extends MvpAppCompatActivity {
 	private final CompositionPlugin compositionPlugin = new CompositionPluginDelegate();
 
 	@Override
@@ -22,7 +22,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 	/**
 	 * Attach your plugins here.
 	 */
-	protected void initPlugins() {}
+	protected void initPlugins() {
+		//override
+	}
 
 	protected CompositionPlugin compositionPlugin() {
 		return compositionPlugin;

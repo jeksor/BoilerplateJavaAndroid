@@ -24,7 +24,9 @@ public class ExampleServerApi extends ServerApi {
 	ExampleApi exampleApi;
 
 	@Inject
-	public ExampleServerApi() {/**/}
+	public ExampleServerApi() {
+		super();
+	}
 
 	public Single<ExampleDto> getExample() {
 		return handleHttpErrorCall(exampleApi.getExample());

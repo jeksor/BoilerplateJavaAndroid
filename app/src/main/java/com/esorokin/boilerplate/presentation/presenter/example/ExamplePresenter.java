@@ -21,6 +21,7 @@ public class ExamplePresenter extends BasePresenter<ExampleView> {
 	ErrorProcessor errorProcessor;
 
 	public ExamplePresenter() {
+		super();
 		DependencyManager.getAppComponent().inject(this);
 
 		interactor.getExampleUseCaseDataEmitter()

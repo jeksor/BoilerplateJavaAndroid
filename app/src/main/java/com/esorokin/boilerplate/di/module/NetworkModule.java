@@ -23,7 +23,7 @@ public class NetworkModule {
 
 	@Provides
 	@Singleton
-	OkHttpClient provideOkHttpClient() {
+	public OkHttpClient provideOkHttpClient() {
 		HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
 		logInterceptor.setLevel(BuildUtils.isTurnLogs() ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
 
@@ -37,13 +37,13 @@ public class NetworkModule {
 
 	@Provides
 	@Singleton
-	Converter.Factory provideConverter(Gson gson) {
+	public Converter.Factory provideConverter(Gson gson) {
 		return GsonConverterFactory.create(gson);
 	}
 
 	@Provides
 	@Singleton
-	Retrofit.Builder provideRetrofitBuilder(OkHttpClient okHttpClient, Converter.Factory converterFactory) {
+	public Retrofit.Builder provideRetrofitBuilder(OkHttpClient okHttpClient, Converter.Factory converterFactory) {
 		return new Retrofit.Builder()
 				.client(okHttpClient)
 				.addConverterFactory(converterFactory);

@@ -11,6 +11,10 @@ import io.reactivex.ObservableTransformer;
 import timber.log.Timber;
 
 public final class PresenterUtils {
+	private PresenterUtils() {
+		//utils
+	}
+
 	public static <Data> ObservableTransformer<ModelWrapper<Data>, Data> defaultLoadErrorCompleteConsumer(ErrorProcessor errorProcessor, MvpView viewState) {
 		return source -> source
 				.doOnNext(modelWrapper -> {

@@ -13,14 +13,15 @@ import com.esorokin.boilerplate.ui.plugins.base.BasePlugin;
 
 public class BindingPlugin<T extends ViewDataBinding> extends BasePlugin {
 	@Nullable
-	private Activity activity;
+	private final Activity activity;
+	private final int layoutId;
 	private T binding;
-	private int layoutId;
 
 	/**
 	 * Use for activity.
 	 */
 	public BindingPlugin(@Nullable Activity activity, @LayoutRes int layoutId) {
+		super();
 		this.activity = activity;
 		this.layoutId = layoutId;
 	}
@@ -29,6 +30,8 @@ public class BindingPlugin<T extends ViewDataBinding> extends BasePlugin {
 	 * Use for fragments and views.
 	 */
 	public BindingPlugin(@LayoutRes int layoutId) {
+		super();
+		this.activity = null;
 		this.layoutId = layoutId;
 	}
 

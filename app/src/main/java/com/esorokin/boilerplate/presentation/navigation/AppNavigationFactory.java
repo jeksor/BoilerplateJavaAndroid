@@ -5,6 +5,7 @@ import com.esorokin.boilerplate.ui.activity.ExampleActivity;
 
 public class AppNavigationFactory extends RegistryNavigationFactory {
 	public AppNavigationFactory() {
+		super();
 		registerActivity(AppScreen.Example.class, ExampleActivity.class);
 	}
 }

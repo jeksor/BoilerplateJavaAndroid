@@ -7,35 +7,57 @@ import android.view.View;
 
 public class BasePlugin implements Plugin {
 	@Override
-	public void onCreate() {}
+	public void onCreate() {
+		//override
+	}
 
 	@Override
-	public void onViewCreated(final View view) {}
+	public void onViewCreated(final View view) {
+		//override
+	}
 
 	@Override
-	public void onStart() {}
+	public void onStart() {
+		//override
+	}
 
 	@Override
-	public void onResume() {}
+	public void onResume() {
+		//override
+	}
 
 	@Override
-	public void onPause() {}
+	public void onPause() {
+		//override
+	}
 
 	@Override
-	public void onStop() {}
+	public void onStop() {
+		//override
+	}
 
 	@Override
-	public void onDestroy() {}
+	public void onDestroy() {
+		//override
+	}
 
 	@Override
-	public void onOptionsItemSelected(MenuItem item) {}
+	public void onOptionsItemSelected(MenuItem item) {
+		//override
+	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {}
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+		//override
+	}
 
 	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {}
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//override
+	}
 
 	@Override
-	public void onBackPressed() {}
+	public void onBackPressed() {
+		//override
+	}
 }

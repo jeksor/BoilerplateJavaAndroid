@@ -27,6 +27,7 @@ public class NavigationPlugin extends BasePlugin {
 	}
 
 	public NavigationPlugin(AppCompatActivity activity, TransitionAnimationProvider transitionAnimationProvider) {
+		super();
 		DependencyManager.getAppComponent().inject(this);
 		this.activity = activity;
 		this.transitionAnimationProvider = transitionAnimationProvider;

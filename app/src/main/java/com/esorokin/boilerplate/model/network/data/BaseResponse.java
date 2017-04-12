@@ -1,4 +1,7 @@
 package com.esorokin.boilerplate.model.network.data;
 
-public abstract class BaseResponse {
+public class BaseResponse {
+	protected BaseResponse() {
+		//not available for directly create
+	}
 }

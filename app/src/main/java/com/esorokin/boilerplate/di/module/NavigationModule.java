@@ -13,7 +13,7 @@ import dagger.Provides;
 
 @Module
 public class NavigationModule {
-	private AndroidNavigator navigator;
+	private final AndroidNavigator navigator;
 
 	public NavigationModule() {
 		navigator = new AndroidNavigator(new AppNavigationFactory());
@@ -21,19 +21,19 @@ public class NavigationModule {
 
 	@Provides
 	@Singleton
-	public Navigator provideNavigator() {
+	Navigator provideNavigator() {
 		return navigator;
 	}
 
 	@Provides
 	@Singleton
-	public NavigationContextBinder provideNavigationContextBinder() {
+	NavigationContextBinder provideNavigationContextBinder() {
 		return navigator;
 	}
 
 	@Provides
 	@Singleton
-	public ScreenResolver proScreenResolver() {
+	ScreenResolver proScreenResolver() {
 		return navigator.getScreenResolver();
 	}
 }

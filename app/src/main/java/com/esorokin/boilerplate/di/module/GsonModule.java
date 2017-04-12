@@ -17,6 +17,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import timber.log.Timber;
 
 @Module
 public class GsonModule {
@@ -31,6 +32,7 @@ public class GsonModule {
 					return new SimpleDateFormat(format, Locale.getDefault()).parse(json.getAsString());
 				} catch (ParseException ignore) {
 					//ignore, try next
+					Timber.d("Format [%s] not correct for \"%s\". Try next.", format, json.getAsString());
 				}
 			}
 			throw new JsonParseException("Unparsable date: \"" + json.getAsString() + "\". Supported formats: " + Arrays.toString(dateFormats));

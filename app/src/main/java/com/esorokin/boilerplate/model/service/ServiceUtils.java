@@ -9,6 +9,10 @@ import io.reactivex.SingleTransformer;
 import io.reactivex.subjects.Subject;
 
 public final class ServiceUtils {
+	private ServiceUtils() {
+		//utils
+	}
+
 	public static <Data> SingleTransformer<Data, Data> transitEventsToEmitter(Subject<ModelWrapper<Data>> emitter) {
 		return source -> source
 				.doOnSubscribe(disposable -> emitter.onNext(ModelWrapper.loading()))

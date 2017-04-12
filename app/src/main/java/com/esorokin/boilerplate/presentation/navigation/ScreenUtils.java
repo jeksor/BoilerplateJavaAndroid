@@ -8,6 +8,10 @@ import com.art.alligator.ScreenResolver;
 import com.esorokin.boilerplate.di.DependencyManager;
 
 public final class ScreenUtils {
+	private ScreenUtils() {
+		//utils
+	}
+
 	public static <T extends Screen> T getScreen(Activity activity, Class<T> screen) {
 		return getAppScreenResolver().getScreen(activity, screen);
 	}

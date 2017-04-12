@@ -8,7 +8,7 @@ import com.securepreferences.SecurePreferences;
  * More slowly than default prefs.
  * Use only for sensitive user data.
  */
-abstract class EncryptedPrefs extends Prefs {
+class EncryptedPrefs extends Prefs {
 	public EncryptedPrefs(String sharedPrefsName) {
 		super(sharedPrefsName);
 	}
