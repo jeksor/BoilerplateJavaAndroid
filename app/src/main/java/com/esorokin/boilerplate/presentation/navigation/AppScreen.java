@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 public final class AppScreen {
-
 	@Getter
 	@AllArgsConstructor
 	public static class Example implements Screen, Serializable {

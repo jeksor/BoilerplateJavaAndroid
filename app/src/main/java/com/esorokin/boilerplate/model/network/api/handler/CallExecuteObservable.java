@@ -13,6 +13,7 @@ final class CallExecuteObservable<T> extends Observable<Response<T>> {
 	private final Call<T> originalCall;
 
 	CallExecuteObservable(Call<T> originalCall) {
+		super();
 		this.originalCall = originalCall;
 	}
 

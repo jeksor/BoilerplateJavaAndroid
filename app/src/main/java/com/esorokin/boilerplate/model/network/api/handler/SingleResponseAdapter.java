@@ -9,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.CallAdapter;
 
 class SingleResponseAdapter<BaseResponse> implements CallAdapter<BaseResponse, Single<BaseResponse>> {
-	private Type responseType;
+	private final Type responseType;
 	private final SingleNetworkErrorHandler<BaseResponse> errorHandler;
 	private final SingleHttpResponseHandler<BaseResponse> httpResponseHandler;
 

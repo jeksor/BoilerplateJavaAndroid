@@ -33,7 +33,7 @@ public class ExampleService {
 
 	@Inject
 	public ExampleService() {
-		super();
+		//inject
 	}
 
 	public void requestUserName() {

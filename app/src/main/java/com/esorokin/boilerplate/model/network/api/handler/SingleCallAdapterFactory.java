@@ -33,6 +33,7 @@ public final class SingleCallAdapterFactory extends CallAdapter.Factory {
 	private final SingleHttpResponseHandler<?> httpResponseHandler;
 
 	private SingleCallAdapterFactory(Class<?> baseResponseType, SingleNetworkErrorHandler<?> errorHandler, SingleHttpResponseHandler<?> httpResponseHandler) {
+		super();
 		this.baseResponseType = baseResponseType;
 		this.errorHandler = errorHandler;
 		this.httpResponseHandler = httpResponseHandler;
