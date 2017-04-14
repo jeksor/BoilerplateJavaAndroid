@@ -23,16 +23,16 @@ public final class SingleCallAdapterFactory extends CallAdapter.Factory {
 	 * @param httpResponseHandler Handler server response (fail, success)
 	 */
 	public static <R> SingleCallAdapterFactory create(@NonNull Class<R> baseResponseType,
-	                                                  @NonNull SingleNetworkErrorHandler<R> errorHandler,
+	                                                  @NonNull SingleNetworkErrorHandler errorHandler,
 	                                                  @NonNull SingleHttpResponseHandler<R> httpResponseHandler) {
 		return new SingleCallAdapterFactory(baseResponseType, errorHandler, httpResponseHandler);
 	}
 
 	private final Class<?> baseResponseType;
-	private final SingleNetworkErrorHandler<?> errorHandler;
+	private final SingleNetworkErrorHandler errorHandler;
 	private final SingleHttpResponseHandler<?> httpResponseHandler;
 
-	private SingleCallAdapterFactory(Class<?> baseResponseType, SingleNetworkErrorHandler<?> errorHandler, SingleHttpResponseHandler<?> httpResponseHandler) {
+	private SingleCallAdapterFactory(Class<?> baseResponseType, SingleNetworkErrorHandler errorHandler, SingleHttpResponseHandler<?> httpResponseHandler) {
 		super();
 		this.baseResponseType = baseResponseType;
 		this.errorHandler = errorHandler;

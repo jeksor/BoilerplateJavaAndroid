@@ -4,7 +4,6 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import com.esorokin.boilerplate.model.network.api.handler.SingleNetworkErrorHandler;
-import com.esorokin.boilerplate.model.network.data.BaseResponse;
 import com.esorokin.boilerplate.model.network.exception.NetworkException;
 import com.esorokin.boilerplate.model.network.exception.TimeoutException;
 import com.esorokin.boilerplate.model.network.exception.UnhandledApiException;
@@ -17,14 +16,14 @@ import retrofit2.Response;
 import timber.log.Timber;
 
 @Singleton
-public class DefaultNetworkErrorHandler implements SingleNetworkErrorHandler<BaseResponse> {
+public class DefaultNetworkErrorHandler implements SingleNetworkErrorHandler {
 	@Inject
 	public DefaultNetworkErrorHandler() {
 		//inject
 	}
 
 	@Override
-	public Single<Response<BaseResponse>> handleNonHttpError(Throwable throwable) {
+	public Single<Response<?>> handleNonHttpError(Throwable throwable) {
 		Timber.e(throwable);
 
 		if (throwable instanceof SocketTimeoutException) {
