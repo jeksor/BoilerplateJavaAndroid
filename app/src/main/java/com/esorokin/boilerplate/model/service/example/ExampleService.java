@@ -41,7 +41,7 @@ public class ExampleService {
 	}
 
 	public Single<ExampleItem> userName() {
-		return exampleApi.getExample()
+		return exampleApi.getExample().toSingle()
 				.subscribeOn(Schedulers.io())
 				.map(exampleItemMapper::convert)
 				.compose(ServiceUtils.transitEventsToEmitter(userNameUpdateEmitter));

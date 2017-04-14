@@ -1,6 +1,6 @@
 package com.esorokin.boilerplate.model.network.api;
 
-import com.esorokin.boilerplate.model.network.api.handler.SingleHttpResponseHandler;
+import com.esorokin.boilerplate.model.network.api.handler.SingleHttpResponseAdapter;
 import com.esorokin.boilerplate.model.network.data.BaseResponse;
 import com.esorokin.boilerplate.model.network.exception.UnhandledApiException;
 
@@ -11,9 +11,9 @@ import io.reactivex.Single;
 import retrofit2.Response;
 
 @Singleton
-public class DefaultResponseHandler implements SingleHttpResponseHandler<BaseResponse> {
+public class DefaultResponseAdapter implements SingleHttpResponseAdapter<BaseResponse> {
 	@Inject
-	public DefaultResponseHandler() {
+	public DefaultResponseAdapter() {
 		//inject
 	}
 
