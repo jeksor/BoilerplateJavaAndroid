@@ -2,6 +2,8 @@ package com.esorokin.boilerplate.model;
 
 import android.support.annotation.NonNull;
 
+import io.reactivex.SingleTransformer;
+import io.reactivex.subjects.Subject;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +11,13 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModelWrapper<Data> {
+	public static <Data> SingleTransformer<Data, Data> transitEventsToEmitter(Subject<ModelWrapper<Data>> emitter) {
+		return source -> source
+				.doOnSubscribe(disposable -> emitter.onNext(ModelWrapper.loading()))
+				.doOnSuccess(credentials -> emitter.onNext(ModelWrapper.complete(credentials)))
+				.doOnError(throwable -> emitter.onNext(ModelWrapper.error(throwable)));
+	}
+
 	public static <T> ModelWrapper<T> loading() {
 		return new ModelWrapper<>(ModelState.LOADING, null, null);
 	}

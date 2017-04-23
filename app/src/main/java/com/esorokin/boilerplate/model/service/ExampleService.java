@@ -1,11 +1,11 @@
-package com.esorokin.boilerplate.model.service.example;
+package com.esorokin.boilerplate.model.service;
 
 import com.esorokin.boilerplate.model.ModelWrapper;
 import com.esorokin.boilerplate.model.data.ExampleItem;
 import com.esorokin.boilerplate.model.mapper.Mapper;
 import com.esorokin.boilerplate.model.network.api.ExampleApi;
 import com.esorokin.boilerplate.model.network.data.example.ExampleDtoResponse;
-import com.esorokin.boilerplate.model.service.ServiceUtils;
+import com.esorokin.boilerplate.model.ModelUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,13 +37,13 @@ public class ExampleService {
 	}
 
 	public void requestUserName() {
-		ServiceUtils.subscribeIgnoreResult(userName());
+		ModelUtils.subscribeIgnoreResult(userName());
 	}
 
 	public Single<ExampleItem> userName() {
 		return exampleApi.getExample().toSingle()
 				.subscribeOn(Schedulers.io())
 				.map(exampleItemMapper::convert)
-				.compose(ServiceUtils.transitEventsToEmitter(userNameUpdateEmitter));
+				.compose(ModelWrapper.transitEventsToEmitter(userNameUpdateEmitter));
 	}
 }

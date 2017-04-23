@@ -3,7 +3,7 @@ package com.esorokin.boilerplate.model.interactor.example;
 import com.esorokin.boilerplate.model.ModelWrapper;
 import com.esorokin.boilerplate.model.data.ExampleItem;
 import com.esorokin.boilerplate.model.interactor.BaseInteractor;
-import com.esorokin.boilerplate.model.service.example.ExampleService;
+import com.esorokin.boilerplate.model.service.ExampleService;
 
 import javax.inject.Inject;
 

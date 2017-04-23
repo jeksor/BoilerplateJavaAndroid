@@ -4,8 +4,8 @@ import com.esorokin.boilerplate.R;
 import com.esorokin.boilerplate.app.StringProvider;
 import com.esorokin.boilerplate.model.network.api.DefaultNetworkErrorAdapter;
 import com.esorokin.boilerplate.model.network.api.ExampleApi;
-import com.esorokin.boilerplate.model.network.api.UniqDefaultResponseAdapter;
-import com.esorokin.boilerplate.model.network.api.handler.PowerCallAdapterFactory;
+import com.esorokin.boilerplate.model.network.api.DefaultResponseAdapter;
+import com.esorokin.boilerplate.model.network.api.handler.RxCallAdapterFactory;
 import com.esorokin.boilerplate.model.network.data.BaseResponse;
 
 import javax.inject.Named;
@@ -32,10 +32,10 @@ public class ApiModule {
 	@Provides
 	@Named(BASE_API_QUALIFIER)
 	@Singleton
-	Retrofit provideBaseRetrofit(Retrofit.Builder retrofitBuilder, DefaultNetworkErrorAdapter errorAdapter, UniqDefaultResponseAdapter responseAdapter) {
+	Retrofit provideBaseRetrofit(Retrofit.Builder retrofitBuilder, DefaultNetworkErrorAdapter errorAdapter, DefaultResponseAdapter responseAdapter) {
 		return retrofitBuilder
 				.baseUrl(baseApiUrl)
-				.addCallAdapterFactory(PowerCallAdapterFactory.create(BaseResponse.class, errorAdapter, responseAdapter))
+				.addCallAdapterFactory(RxCallAdapterFactory.create(BaseResponse.class, errorAdapter, responseAdapter))
 				.build();
 	}
 
